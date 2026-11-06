@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily Task Organizer</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #eee5ff, #f8f0ff);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6a0dad, #9b59b6);
+            color: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(75, 0, 130, 0.2);
+        }
+
+        .header h1 {
+            font-weight: bold;
+        }
+
+        .header p {
+            color: #f1e5ff;
+            margin-bottom: 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(75, 0, 130, 0.1);
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        h3 {
+            color: #6a0dad;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .btn-purple {
+            background: #7b2cbf;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 18px;
+            border: none;
+        }
+
+        .btn-purple:hover {
+            background: #5a189a;
+            color: white;
+        }
+
+        .btn-light-purple {
+            background: #ead8ff;
+            color: #5a189a;
+            border-radius: 8px;
+            padding: 10px 18px;
+            border: none;
+        }
+
+        .btn-light-purple:hover {
+            background: #d8baff;
+            color: #4b0082;
+        }
+
+        .box {
+            background: #f5edff;
+            color: #4b0082;
+            border-left: 5px solid #9b59b6;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 18px;
+            min-height: 55px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .topic-label {
+            display: inline-block;
+            background: #ead8ff;
+            color: #6a0dad;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .task-item {
+            display: inline-block;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 4px;
+            box-shadow: 0 2px 5px rgba(75, 0, 130, 0.08);
+        }
+
+        .footer {
+            text-align: center;
+            color: #79549b;
+            padding: 20px;
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                padding: 25px 18px;
+            }
+
+            .card-body {
+                padding: 18px;
+            }
+
+            .btn {
+                margin: 4px 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-4">
+
+        <!-- HEADER -->
+        <div class="header mb-4">
+            <div class="icon">📅✨</div>
+            <h1>My Daily Task Organizer</h1>
+            <p>Organize, sort and label your daily tasks using JavaScript array methods!</p>
+        </div>
+
+        <!-- TOPIC 1 & 2: sort() and reverse() -->
+        <div class="card">
+            <div class="card-body">
+
+                <div class="icon">📋</div>
+                <span class="topic-label">TOPIC 1 & 2 · sort() and reverse()</span>
+
+                <h3>Daily Tasks</h3>
+                <p class="text-muted">
+                    Arrange your daily activities alphabetically.
+                </p>
+
+                <button class="btn btn-purple mr-2" onclick="sortAZ()">
+                    🔤 Sort A to Z
+                </button>
+
+                <button class="btn btn-light-purple" onclick="sortZA()">
+                    🔄 Sort Z to A
+                </button>
+
+                <div id="taskResult" class="box"></div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 3: sort() with compare function -->
+        <div class="card">
+            <div class="card-body">
+
+                <div class="icon">⏱️</div>
+                <span class="topic-label">TOPIC 3 · Compare Function</span>
+
+                <h3>Task Time Needed</h3>
+                <p class="text-muted">
+                    Arrange tasks according to the time required to complete them.
+                </p>
+
+                <button class="btn btn-purple mr-2" onclick="sortShortest()">
+                    ⚡ Shortest First
+                </button>
+
+                <button class="btn btn-light-purple" onclick="sortLongest()">
+                    🕒 Longest First
+                </button>
+
+                <div id="timeResult" class="box"></div>
+
+            </div>
+        </div>
+
+        <!-- TOPIC 4: map() -->
+        <div class="card">
+            <div class="card-body">
+
+                <div class="icon">🏷️</div>
+                <span class="topic-label">TOPIC 4 · map()</span>
+
+                <h3>Label Every Task Time</h3>
+                <p class="text-muted">
+                    Convert each number into a readable time label using map().
+                </p>
+
+                <button class="btn btn-purple" onclick="addLabel()">
+                    ✨ Add Minutes Label
+                </button>
+
+                <div id="labelResult" class="box">
+                    Press the button above to display labelled times!
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <h5>💜 Stay Organized, Stay Productive!</h5>
+            <p>Made with HTML, CSS, Bootstrap and JavaScript</p>
+        </div>
+
+    </div>
+
+    <script>
+        var tasks = [
+            "Homework",
+            "Breakfast",
+            "Exercise",
+            "Reading",
+            "Packing Bag"
+        ];
+
+        var minutes = [30, 15, 20, 25, 10];
+
+        // Display original arrays
+        document.getElementById("taskResult").innerHTML =
+            "Tasks: " + tasks.map(task =>
+                '<span class="task-item">' + task + '</span>'
+            ).join("");
+
+        document.getElementById("timeResult").innerHTML =
+            "Minutes needed: " + minutes.join(", ");
+
+        document.getElementById("labelResult").innerHTML =
+            "Press the button above!";
+
+        // TOPIC 1: sort() A to Z
+        function sortAZ() {
+            tasks.sort();
+
+            document.getElementById("taskResult").innerHTML =
+                "A to Z: " + tasks.map(task =>
+                    '<span class="task-item">' + task + '</span>'
+                ).join("");
+        }
+
+        // TOPIC 2: sort() and reverse()
+        function sortZA() {
+            tasks.sort();
+            tasks.reverse();
+
+            document.getElementById("taskResult").innerHTML =
+                "Z to A: " + tasks.map(task =>
+                    '<span class="task-item">' + task + '</span>'
+                ).join("");
+        }
+
+        // TOPIC 3: sort() with compare function
+        function sortShortest() {
+            minutes.sort(function (a, b) {
+                return a - b;
+            });
+
+            document.getElementById("timeResult").innerHTML =
+                "Shortest tasks first: " + minutes.join(", ") + " minutes";
+        }
+
+        function sortLongest() {
+            minutes.sort(function (a, b) {
+                return b - a;
+            });
+
+            document.getElementById("timeResult").innerHTML =
+                "Longest tasks first: " + minutes.join(", ") + " minutes";
+        }
+
+        // TOPIC 4: map()
+        function addLabel() {
+            var labelledMinutes = minutes.map(function (time) {
+                return time + " minutes";
+            });
+
+            document.getElementById("labelResult").innerHTML =
+                "Labelled times: " + labelledMinutes.join(", ");
+        }
+    </script>
+
+</body>
+
+</html>
